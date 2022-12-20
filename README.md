@@ -13,7 +13,7 @@ Generate functions with [test.check](https://github.com/clojure/test.check) to a
 
 [deps.edn](https://clojure.org/reference/deps_and_cli)
 ```clojure
-skylize/fgen {:git-tag "0.1.0" :git/sha "..."}
+skylize/fgen {:git-tag "0.1.0" :git/sha "9c8d7d5"}
 ```
 
 ## Usage
