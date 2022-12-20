@@ -1,0 +1,4 @@
+{:lint-as
+ {clojure.test.check.clojure-test/defspec 
+  clj-kondo.lint-as/def-catch-all}
+ :exclude-files [#".cljs-test-runner"]}

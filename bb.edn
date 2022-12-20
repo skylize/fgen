@@ -1,0 +1,26 @@
+{:min-bb-version "1.0.165"
+ :deps {skylize/fgen {:local/root "."}}
+ :paths ["bb" "src" "test"]
+ :tasks
+ {test:bb
+  {:extra-deps {babashka/fs {:mvn/version "0.2.12"}
+                io.github.cognitect-labs/test-runner
+                {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+   :requires ([test-runner :as tr])
+   :task (do (println "Babashka tests")
+             (tr/test *command-line-args*))}
+
+  test:clj
+  {:task (do (println "Clojure tests")
+             (apply clojure "-M:test" *command-line-args*))}
+
+  test:cljs
+  {:task (do (println "ClojureScript tests")
+             (apply clojure "-M:test/cljs" *command-line-args*))}
+  
+  all-tests
+  {:depends [test:bb test:clj test:cljs]}
+  
+  test (do (println "Running all tests in parallel")
+           (run 'all-tests {:parallel true})
+           (println "All tests complete"))}}
